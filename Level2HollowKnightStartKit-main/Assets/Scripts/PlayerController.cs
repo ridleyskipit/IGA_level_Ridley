@@ -19,6 +19,7 @@ public class PlayerController: MonoBehaviour
         jumper = gameObject.GetComponent<Jumper>();
     }
 
+    //this is an example of what it looks like when somebody else edits my game remotely
     // Update is called once per frame
     void Update()
     {
