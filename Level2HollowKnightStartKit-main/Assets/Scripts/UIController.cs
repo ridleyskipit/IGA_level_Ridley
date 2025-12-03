@@ -65,10 +65,10 @@ public class UIController : MonoBehaviour
         int healthPoints = playerDestructible.GetHitPoints();
 
         //For every heart in our heart list
-        for( int i = 0; i < heartContainers.Count; i++ )
+        for (int i = 0; i < heartContainers.Count; i++)
         {
             //If we have enough hitpoints...
-            if( i < healthPoints )
+            if (i < healthPoints)
             {
                 //Turn it on
                 heartContainers[i].SetActive(true);
@@ -93,5 +93,15 @@ public class UIController : MonoBehaviour
             //Change the text to our new count
             coinCountText.text = "X " + coinCount;
         }
+    }
+
+    public void LoadLevel(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name) ;
     }
 }
