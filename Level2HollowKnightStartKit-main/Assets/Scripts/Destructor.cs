@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Destructor : MonoBehaviour
@@ -22,6 +21,7 @@ public class Destructor : MonoBehaviour
         if( destrucible && destrucible.faction != faction )
         {
             //Make it take damage
+            Debug.Log(gameObject.name);
             destrucible.TakeDamage(damage);
 
             //And push it back if it has a rigidbody2d

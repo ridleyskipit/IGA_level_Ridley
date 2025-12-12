@@ -43,6 +43,7 @@ public class Destructible : MonoBehaviour
     //Base function that modifies hitpoints by any value (positive or negative)
     private void ModifyHitPoints( int modAmount )
     {
+        Debug.Log(gameObject.name + " " + hitPoints + " " + modAmount);
         //Add the modAmount (which could be positive or negative) to the current hitpoints
         hitPoints += modAmount;
 
