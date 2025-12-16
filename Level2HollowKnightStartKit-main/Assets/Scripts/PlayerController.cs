@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
+using UnityEngine;
 
 //This script NEEDS a mover and a jumper to work. This will automatically add them if there isn't one of each
 [RequireComponent(typeof(Mover))]
@@ -118,6 +119,20 @@ public class PlayerController : MonoBehaviour
                     //Shoot!
                     projectileShooter.Fire();
                 }
+            }
+        }
+
+        if (debugGround)
+        {
+            _dbgTimer += Time.deltaTime;
+            if (_dbgTimer >= 0.25f) // log 4x per second
+            {
+                _dbgTimer = 0f;
+
+                bool grounded = jumper != null && jumper.GetIsOnGround();
+                Vector2 v = _rb != null ? _rb.velocity : Vector2.zero;
+
+                Debug.Log($"Grounded={grounded}  vel=({v.x:F2}, {v.y:F2})");
             }
         }
     }
