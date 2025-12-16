@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //This script NEEDS a mover and a jumper to work. This will automatically add them if there isn't one of each
 [RequireComponent(typeof(Mover))]
@@ -8,6 +6,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool debugGround = true;
+    private Rigidbody2D _rb;
+    private float _dbgTimer;
+
     [Tooltip("How well we can control ourselves in the air. 1 = same as on ground")]
     public float airControl = 0.5f;
 
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
         jumper = gameObject.GetComponent<Jumper>();
         animator = gameObject.GetComponent<Animator>();
         projectileShooter = GetComponent<ProjectileShooter>();
+        _rb = GetComponent<Rigidbody2D>();
 
         //If we have a projectile shooter, we need to set it facing the right direction
         if (projectileShooter != null)
@@ -36,6 +39,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.D)) Debug.Log("D held");
+
         //If we have an animator...
         if (animator != null)
         {
