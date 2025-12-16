@@ -6,7 +6,7 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public bool debugGround = true;
+    //public bool debugGround = true;
     private Rigidbody2D _rb;
     private float _dbgTimer;
 
@@ -120,19 +120,19 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (debugGround)
-        {
-            _dbgTimer += Time.deltaTime;
-            if (_dbgTimer >= 0.25f) // log 4x per second
-            {
-                _dbgTimer = 0f;
-
-                bool grounded = jumper != null && jumper.GetIsOnGround();
-                Vector2 v = _rb != null ? _rb.linearVelocity : Vector2.zero;
-
-                Debug.Log($"Grounded={grounded}  vel=({v.x:F2}, {v.y:F2})");
-            }
-        }
+ //       if (debugGround)
+ //       {
+ //           _dbgTimer += Time.deltaTime;
+ //           if (_dbgTimer >= 0.25f) // log 4x per second
+ //           {
+ //               _dbgTimer = 0f;
+ //
+ //               bool grounded = jumper != null && jumper.GetIsOnGround();
+ //               Vector2 v = _rb != null ? _rb.linearVelocity : Vector2.zero;
+ //
+ //               Debug.Log($"Grounded={grounded}  vel=({v.x:F2}, {v.y:F2})");
+ //           }
+ //       }
     }
 
     public void UnlockDoubleJump()
