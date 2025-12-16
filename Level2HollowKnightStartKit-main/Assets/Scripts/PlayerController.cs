@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using UnityEngine;
+﻿using UnityEngine;
 
 //This script NEEDS a mover and a jumper to work. This will automatically add them if there isn't one of each
 [RequireComponent(typeof(Mover))]
@@ -40,7 +39,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.D)) Debug.Log("D held");
 
         //If we have an animator...
         if (animator != null)
@@ -130,7 +128,7 @@ public class PlayerController : MonoBehaviour
                 _dbgTimer = 0f;
 
                 bool grounded = jumper != null && jumper.GetIsOnGround();
-                Vector2 v = _rb != null ? _rb.velocity : Vector2.zero;
+                Vector2 v = _rb != null ? _rb.linearVelocity : Vector2.zero;
 
                 Debug.Log($"Grounded={grounded}  vel=({v.x:F2}, {v.y:F2})");
             }
