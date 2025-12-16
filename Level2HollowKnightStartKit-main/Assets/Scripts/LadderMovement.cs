@@ -20,8 +20,18 @@ public class LadderMovement : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        vertical = Input.GetAxis("Vertical");
 
-   private void FixedUpdate()
+        if (isLadder && Mathf.Abs(vertical) > 0f)
+        {
+            isClimbing = true;
+        }
+    }
+
+
+    private void FixedUpdate()
     {
         if (isClimbing)
         {
@@ -30,7 +40,7 @@ public class LadderMovement : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 4f;
+            rb.gravityScale = 2f;
         }
 
     }
