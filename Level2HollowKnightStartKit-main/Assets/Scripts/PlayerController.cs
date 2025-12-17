@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private Jumper jumper;
     private Animator animator;
     private ProjectileShooter projectileShooter;
+    private Dasher dasher;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         projectileShooter = GetComponent<ProjectileShooter>();
         _rb = GetComponent<Rigidbody2D>();
+        dasher = gameObject.GetComponent<Dasher>();
 
         //If we have a projectile shooter, we need to set it facing the right direction
         if (projectileShooter != null)
@@ -75,6 +77,12 @@ public class PlayerController : MonoBehaviour
             {
                 projectileShooter.SetDirection(new Vector2(1f, 0.1f));
             }
+
+            //if we have a Dasher and we press shift, let's dash!
+            if (dasher != null)
+            {
+                dasher.SetDirection(new Vector2(1f, 0f));
+            }
         }
 
         //Moving Left
@@ -97,14 +105,29 @@ public class PlayerController : MonoBehaviour
             {
                 projectileShooter.SetDirection(new Vector2(-1f, 0.1f));
             }
-        }
 
+            //if we have a Dasher and we press shift, let's dash!
+            if (dasher != null)
+            {
+                dasher.SetDirection(new Vector2(-1f, 0f));
+            }
+        }
 
         //When Jumping
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             //If the jump key is pressed... jump!
             jumper.Jump();
+        }
+
+        //When dashing
+        if( Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift) )
+        {
+            if ( dasher != null ) 
+            {
+                dasher.Dash();
+            }
+
         }
 
         //When shooting
@@ -148,6 +171,14 @@ public class PlayerController : MonoBehaviour
         if (projectileShooter != null)
         {
             projectileShooter.projectilePrefab = projectilePrefab;
+        }
+    }
+
+    public void UnlockDash()
+    {
+        if (dasher != null)
+        {
+            dasher.dashAllowed = true;
         }
     }
 }
